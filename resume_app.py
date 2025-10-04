@@ -25,4 +25,40 @@ projects = st.sidebar.text_area("🚀 Projects",
                                 "Metawarisan App: NFT + Digital Heritage Marketplace\n"
                                 "Smart Waste Management System: IoT Bins with AI Recognition")
 achievements = st.sidebar.text_area("🏆 Achievements", 
-                                    "-
+                                    "- Dean’s List 2024\n- Microsoft Azure AI-900 Certified")
+
+# --- Main Page ---
+col1, col2 = st.columns([1, 3])
+
+with col1:
+    if uploaded_file is not None:
+        st.image(uploaded_file, width=200, caption=full_name, output_format="auto")
+    else:
+        st.image("https://via.placeholder.com/200", width=200, caption=full_name)  # Placeholder if no image
+
+with col2:
+    st.title(full_name)
+    st.subheader(title)
+    st.markdown(f"📧 **Email:** {email} | 📱 **Phone:** {phone}")
+    st.markdown(f"🔗 [LinkedIn]({linkedin}) | 💻 [GitHub]({github})")
+    st.markdown("---")
+
+# --- Resume Sections ---
+st.markdown("## 🎓 Education")
+st.info(education)
+
+st.markdown("## 💼 Work Experience")
+st.success(experience)
+
+st.markdown("## 🛠 Skills")
+st.warning(skills)
+
+st.markdown("## 🚀 Projects")
+st.write(projects)
+
+st.markdown("## 🏆 Achievements")
+st.write(achievements)
+
+# Footer
+st.markdown("---")
+st.caption("✨ Modern Resume made with Streamlit ✨")
