@@ -1,53 +1,54 @@
 import streamlit as st
 
 # Page Config
-st.set_page_config(page_title="Resume | Your Name", page_icon="📄", layout="centered")
+st.set_page_config(page_title="Interactive Resume", page_icon="📄", layout="centered")
 
-# Title
-st.title("Your Name's Resume")
+st.title("📄 Interactive Resume Builder")
 
-# --- Contact Info ---
-st.header("📞 Contact Information")
-st.write("**Email:** your.email@example.com")
-st.write("**Phone:** +60 123-456-789")
-st.write("**LinkedIn:** [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)")
-st.write("**GitHub:** [github.com/yourusername](https://github.com/yourusername)")
+# --- Upload Profile Picture ---
+st.sidebar.header("👤 Upload Profile Picture")
+uploaded_file = st.sidebar.file_uploader("Choose an image", type=["jpg", "png", "jpeg"])
+if uploaded_file is not None:
+    st.image(uploaded_file, width=200, caption="Profile Picture")
 
-# --- Education ---
-st.header("🎓 Education")
-st.subheader("Degree, University Name (Year - Year)")
-st.write("- Relevant coursework, achievements, or thesis title")
+# --- Input Fields ---
+st.sidebar.header("✍️ Enter Your Details")
 
-# --- Work Experience ---
-st.header("💼 Work Experience")
-st.subheader("Job Title | Company Name (Year - Year)")
-st.write("- Responsibility 1")
-st.write("- Responsibility 2")
-st.write("- Achievement 1")
+full_name = st.sidebar.text_input("Full Name", "Your Name")
+email = st.sidebar.text_input("Email", "your.email@example.com")
+phone = st.sidebar.text_input("Phone", "+60 123-456-789")
+linkedin = st.sidebar.text_input("LinkedIn", "https://linkedin.com/in/yourprofile")
+github = st.sidebar.text_input("GitHub", "https://github.com/yourusername")
 
-st.subheader("Intern | Another Company (Year)")
-st.write("- Assisted with XYZ project")
-st.write("- Learned ABC skills")
+education = st.sidebar.text_area("Education", "Degree, University Name, Year")
+experience = st.sidebar.text_area("Work Experience", "Job Title, Company Name, Year\n- Responsibility\n- Achievement")
+skills = st.sidebar.text_area("Skills", "- Python\n- Java\n- Streamlit")
+projects = st.sidebar.text_area("Projects", "Project Name: Description")
+achievements = st.sidebar.text_area("Achievements", "- Award / Certification")
 
-# --- Skills ---
-st.header("🛠 Skills")
-st.write("- Programming: Python, Java, C++")
-st.write("- Tools: Git, Docker, Streamlit")
-st.write("- Others: Problem-Solving, Teamwork")
+# --- Resume Display ---
+st.header(full_name)
 
-# --- Projects ---
-st.header("🚀 Projects")
-st.subheader("Portfolio Optimization using Deep Reinforcement Learning")
-st.write("Built a model to optimize investment portfolios using DRL techniques.")
+st.subheader("📞 Contact Information")
+st.write(f"**Email:** {email}")
+st.write(f"**Phone:** {phone}")
+st.write(f"**LinkedIn:** [{linkedin}]({linkedin})")
+st.write(f"**GitHub:** [{github}]({github})")
 
-st.subheader("Smart Waste Management System")
-st.write("Developed IoT-enabled bins with image recognition for waste segregation.")
+st.subheader("🎓 Education")
+st.write(education)
 
-# --- Achievements ---
-st.header("🏆 Achievements")
-st.write("- Microsoft Azure AI-900 Certified (2025)")
-st.write("- Dean’s List (Year)")
+st.subheader("💼 Work Experience")
+st.write(experience)
 
-# Footer
+st.subheader("🛠 Skills")
+st.write(skills)
+
+st.subheader("🚀 Projects")
+st.write(projects)
+
+st.subheader("🏆 Achievements")
+st.write(achievements)
+
 st.markdown("---")
-st.write("Made with ❤️ using Streamlit")
+st.write("✅ Resume generated with Streamlit")
